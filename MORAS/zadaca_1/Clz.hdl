@@ -10,7 +10,7 @@ Inc16(in = i3, out = i4);
 Inc16(in = i4, out = i5);
 Inc16(in = i5, out = i6);
 Inc16(in = i6, out = i7);
-Inc16(in = i7, out = i8);             // brojevi od 1 do 15
+Inc16(in = i7, out = i8);             // brojevi od 1 do 16
 Inc16(in = i8, out = i9);
 Inc16(in = i9, out = i10);
 Inc16(in = i10, out = i11);
@@ -18,8 +18,9 @@ Inc16(in = i11, out = i12);
 Inc16(in = i12, out = i13);
 Inc16(in = i13, out = i14);
 Inc16(in = i14, out = i15); 
+Inc16(in = i15, out = i16);
 
-Mux16(a = false, b = i15, sel = in[0], out = out1);   
+Mux16(a = i16, b = i15, sel = in[0], out = out1);   
 Mux16(a = out1, b = i14, sel = in[1], out = out2);    
 Mux16(a = out2, b = i13, sel = in[2], out = out3);
 Mux16(a = out3, b = i12, sel = in[3], out = out4);
