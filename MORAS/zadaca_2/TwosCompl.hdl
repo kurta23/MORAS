@@ -1,0 +1,8 @@
+CHIP TwosCompl {
+    IN in[16];   // 16-bit input
+    OUT out[16]; // 16-bit output (two's complement of input)
+
+    PARTS:
+     Not16(in=in, out=inverted);
+     Inc16(in = inverted, out = out);
+}
