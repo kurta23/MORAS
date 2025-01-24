@@ -1,0 +1,22 @@
+push constant 17
+push constant 7
+call mod 2
+
+function mod 0
+
+label LOOP_START
+push argument 0
+push argument 1
+lt
+if-goto LOOP_END
+
+push argument 0
+push argument 1
+sub
+pop argument 0
+
+goto LOOP_START
+
+label LOOP_END
+push argument 0
+return

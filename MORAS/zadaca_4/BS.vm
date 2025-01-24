@@ -1,0 +1,93 @@
+function BSsearch 3
+
+push constant 0
+pop local 0
+
+push argument 1
+push constant 1
+sub
+pop local 1
+
+label BS_LOOP_START
+push local 0
+push local 1
+gt
+if-goto BS_LOOP_END
+
+push local 0
+push local 1
+add
+push constant 2
+call div 2
+pop local 2
+
+push local 2
+push argument 0
+add
+
+pop pointer 1
+push that 0
+push argument 2
+eq
+if-goto BS_FOUND
+
+push local 2
+push argument 0
+add
+pop pointer 1
+push that 0
+push argument 2
+gt
+if-goto BS_HIGHER
+
+goto BS_LOWER
+
+label BS_LOOP_END
+push constant 1
+neg
+return
+
+label BS_FOUND
+push local 2
+return
+
+label BS_HIGHER
+push local 2
+push constant 1
+sub
+pop local 1
+goto BS_LOOP_START
+
+label BS_LOWER
+push local 2
+push constant 1
+add
+pop local 0
+goto BS_LOOP_START
+
+function div 1
+
+push constant 0
+pop local 0
+
+label DIV_LOOP_START
+push argument 0
+push argument 1
+lt
+if-goto DIV_LOOP_END
+
+push argument 0
+push argument 1
+sub
+pop argument 0
+
+push local 0
+push constant 1
+add
+pop local 0
+
+goto DIV_LOOP_START
+
+label DIV_LOOP_END
+push local 0
+return
