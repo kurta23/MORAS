@@ -1,0 +1,29 @@
+class Main{
+ function void main() {
+  var Array arr, res;
+  var int i;
+  let i = 0;
+  let arr = Array.new(4);
+  let arr[0] = 4;
+  let arr[1] = 7;
+  let arr[2] = 3;
+  let arr[3] = 5;
+
+  while (i < 4){
+   do Output.printInt(arr[i]);
+   let i = i+1;
+  }
+  
+  do Output.println();
+  do Qs.qsort(arr, 0, 3);
+  let i = 0;
+
+  while (i < 4){
+   do Output.printInt(arr[i]);
+   let i = i+1;
+  }
+
+  do arr.dispose();
+  return;
+  }
+}

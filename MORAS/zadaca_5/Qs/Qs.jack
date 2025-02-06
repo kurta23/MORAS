@@ -1,0 +1,37 @@
+class Qs {
+
+ function void swap(Array A, int i, int j) {
+  var int temp;
+  let temp = A[i];
+  let A[i] = A[j];
+  let A[j] = temp;
+  return;
+ }
+
+ function int partition(Array A, int l, int r) {
+  var int pivot, i, j;
+  let pivot = A[l];
+  let i = l;
+  let j = l + 1;
+  while ((j < r) | (j = r)) {
+   if ((A[j] < pivot) | (A[j] = pivot)) { 
+    let i = i + 1;
+    do Qs.swap(A, i, j);
+   }
+   let j = j + 1;
+  }
+  do Qs.swap(A, i, l);
+  return i;
+ }
+
+ function void qsort(Array A, int l, int r) {
+  var int qs;
+  if (l < r) {
+   let qs = Qs.partition(A, l, r);
+   do Qs.qsort(A, l, qs - 1);
+   do Qs.qsort(A, qs + 1, r);
+  }
+  return;
+ }
+
+}

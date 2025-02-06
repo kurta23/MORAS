@@ -1,0 +1,21 @@
+class Graph {
+ function int f(int x) {
+  return x*(4/3);
+ }
+
+ function void draw() {
+  var int x,y;
+  let x = -32;
+  do Screen.drawLine(0, 128, 255, 128); // 256x256
+  do Screen.drawLine(128, 0, 128, 255);
+
+  while(x<33){                     // [-32,32]x[-32,32]
+   let y = Graph.f(x);
+   if((y>-33) & (y<33)){
+    do Screen.drawPixel(x+128,128-y);
+   }
+   let x = x+1;
+  }
+  return;
+ }
+}

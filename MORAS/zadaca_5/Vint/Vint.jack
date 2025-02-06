@@ -1,0 +1,201 @@
+class Vint{
+ field int capacity;
+ field Array v;
+
+ method int len (){
+  var int a;
+  let a = capacity;
+  return a;
+ }
+ 
+ method void print (){
+  var int i, size;
+  let i = 0;
+  while(i<capacity){
+   do Output.printInt(v[i]);
+   do Output.printChar(" ");
+   let i = i + 1;
+  }
+  return;
+ }
+
+ function int pow (int x){
+  var int rj;
+  let rj = 1;
+  while(x > 0){
+   let rj = rj*2;
+   let x = x - 1;
+  }
+  return rj;
+ }
+ 
+ constructor Vint new (int n){
+  var int duljina;
+  if (n < 0){
+   let duljina = 1;
+  } 
+  else {
+   let duljina = Vint.pow(n);
+  }
+  let capacity = duljina;
+  let v = Array.new(duljina);
+  return this;
+ }
+ 
+ method void set(int k, int vrijed){
+  var Array novi;
+  var int i, stari;
+  let i = 0;
+  let stari = capacity;
+  if (k < capacity){
+   let v[k] = vrijed;
+   return;
+  }
+  else {
+   while (capacity < k){
+    let capacity = capacity * 2;
+   }
+   let novi = Array.new(capacity);
+   while (i < stari){
+    let novi[i] = v[i];
+    let i = i + 1;
+   }
+   let novi[k] = vrijed;
+   do v.dispose();
+   let v = Array.new(capacity);
+   let i = 0;
+   while(i < capacity){
+    let v[i] = novi[i];
+    let i = i + 1;
+   }
+  }
+  return;
+ }
+
+ method int get(int k){
+  if (k < capacity){
+   return v[k];
+  }
+  return -1;
+ }
+
+ method bool is_eq(Vint prvi, Vint drugi){
+  var int i, duljina1, duljina2;
+  let duljina1 = prvi.len();
+  let duljina2 = drugi.len();
+  let i = 0;
+  if (~(duljina1 = duljina2)){
+   return false;
+  } 
+  else {
+   while (i < duljina1){
+    if (prvi.get(i) = drugi.get(i)){
+     let i = i + 1;
+    }
+    else {
+     return false;
+    }
+   }
+   return true;
+  }
+ }
+
+ ///// pomocne
+ method void swap(int a, int b){
+  var int temp;
+  let temp = v[a];
+  let v[a] = v[b];
+  let v[b] = temp;
+  return;
+ }
+
+ function int min(int a, int b){
+  if(a<b) {return a;}
+  else {return b;}
+ }
+
+ method void Dispose(){
+  do Memory.deAlloc(this);
+  return;
+ }
+
+ function bool elems(Vint vekt1, Vint vekt2){ // sortiram oba i usporedujem redom
+  var int i, j, duljina_vekt1, duljina_vekt2;
+  let i = 0;
+  let j = 0;
+  let duljina_vekt1 = vekt1.len();
+  let duljina_vekt2 = vekt2.len();
+  
+  if(~(duljina_vekt1 = duljina_vekt2)){
+   return false;
+  }
+  
+  while(i<duljina_vekt1){  
+   let j = i+1;
+   while(j<duljina_vekt1){
+    if(vekt1.get(i) > vekt1.get(j)){
+     do vekt1.swap(i,j);
+    }
+    let j = j+1;
+   }
+   let i = i+1;
+  }
+
+  let i = 0;
+  let j = 0;
+
+  while(i<duljina_vekt2){  
+   let j = i+1;
+   while(j<duljina_vekt2){
+    if(vekt2.get(i) > vekt2.get(j)){
+     do vekt2.swap(i,j);
+    }
+    let j = j+1;
+   }
+   let i = i+1;
+  }
+
+  let i = 0;
+  while(i<duljina_vekt1){
+   if(~(vekt1.get(i) = vekt2.get(i))){ 
+    return false;
+   }
+   let i = i+1;
+  }
+  return true;
+ }
+
+ method void resize(int m){
+  var Array novi;
+  var int temp, nova_duljina, i, manja_nova;
+  if(m < 1){
+   let temp = v[0];
+   do v.dispose();
+   let v = Array.new(1);
+   let v[0] = temp;
+   let capacity = 1;
+   return;
+  }
+
+  let nova_duljina = Vint.pow(m);  // nova duljina polja
+  if(nova_duljina = capacity){return;} // ako se ne mijenja duljina  
+  let novi = Array.new(nova_duljina);
+  let i = 0;
+  let manja_nova = Vint.min(nova_duljina, capacity);
+  while(i<manja_nova){
+   let novi[i] = v[i];
+   let i = i+1;
+  }
+  do v.dispose();
+  let v = Array.new(nova_duljina);
+  let i = 0;
+  while(i<nova_duljina){
+   let v[i] = novi[i];
+   let i = i+1;
+  }
+  do novi.dispose();
+  let capacity = nova_duljina;
+  return;
+ }
+
+}

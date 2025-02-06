@@ -1,0 +1,34 @@
+class Main{
+ function void main(){
+ var Vint vektor1, vektor2;
+ var int duljina1, duljina2;
+ var bool rez;
+ let vektor1 = Vint.new(2);
+ let vektor2 = Vint.new(2);
+
+ do vektor1.set(0,1);
+ do vektor1.set(1,2);
+ do vektor1.set(2,3);
+ do vektor1.set(3,4);
+
+ do vektor2.set(0,4);
+ do vektor2.set(1,3);
+ do vektor2.set(2,2);
+ do vektor2.set(3,1);
+
+ let duljina1 = vektor1.len();
+ let duljina2 = vektor2.len();
+
+ do Output.printInt(duljina1);
+ do Output.printChar(" ");
+ do Output.printInt(duljina2);
+ do Output.println();
+
+ let rez = Vint.elems(vektor1, vektor2); // true je -1 sto je funny
+
+ do Output.printInt(rez);
+
+ do vector.Dispose();
+ return;
+ }
+}
